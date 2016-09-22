@@ -36,4 +36,17 @@ catch(OAuthException2 $e)
   echo "Server Exception: " . $e->getMessage() . "\n";
 }
 
+try
+{
+  $stamp_cards = $client->user()->owned_stamp_cards();
+  echo "Stamp cards retrieved!\n";
+  echo count($stamp_cards);
+  echo " stamp card(s)\n";
+  echo json_encode($stamp_cards);
+}
+catch(OAuthException2 $e)
+{
+  echo "Server Exception: " . $e->getMessage() . "\n";
+}
+
 ?>
