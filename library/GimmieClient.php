@@ -40,9 +40,9 @@ class GimmieClient
   function trigger($event_name, $data = array())
   {
     $params = array('event_name' => $event_name, 'event_data' => json_encode($data));
-    echo $this->events_url();
-    echo json_encode($this->root_json);
-    return $this->post($this->events_url(), $params);
+    $response = $this->post($this->events_url(), $params);
+    $body = json_decode($response['body']);
+    return $body->{'_embedded'}->item;
   }
 
   function user()
@@ -70,7 +70,7 @@ class GimmieClient
 
   private function events_url()
   {
-    return $this->root()->{'_links'}->{'gm:events'}->href;
+    return $this->root()->{'_links'}->{'gm:trigger_event'}->href;
   }
 
   private function user_url()

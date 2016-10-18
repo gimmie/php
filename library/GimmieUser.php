@@ -24,11 +24,6 @@ class GimmieUser
     $this->user_json = json_decode($resp['body'], true);
     return $this;
   }
-
-  function owned_stamp_cards()
-  {
-    return $this->user_json['_embedded']['owned_stamp_cards'];
-  }
 }
 
 
